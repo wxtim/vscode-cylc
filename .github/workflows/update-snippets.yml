@@ -28,7 +28,7 @@ jobs:
       - name: git diff and set output
         id: set_output
         run: |
-          git status
+          git status cylc-snippets.json
 
           git diff
 
