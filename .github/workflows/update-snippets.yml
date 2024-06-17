@@ -57,7 +57,7 @@ jobs:
       uses: cylc/release-actions/configure-git@v1
 
     - name: Checkout PR branch
-      run: git checkout --branch "update_snippets"
+      run: git checkout -b "update_snippets"
 
     - name: Commit & push
       run : |
