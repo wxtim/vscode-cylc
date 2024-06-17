@@ -107,4 +107,12 @@
 		],
 		"description": ["A template workflow"]
 	},
+	"contributes": {
+		"snippets": [
+			{
+				"language": "cylc",
+				"path": "./cylc-snippets.json"
+			}
+		]
+	}
 }

@@ -1,0 +1,22 @@
+name: Update Snippets
+# Update cylc-snippets.json using bin/cylc-snippets.
+
+on:
+  # Ideally people making changes should re-run this task, but probably
+  # won't remember - I think once a month is probably often enough.
+  schedule: "* * 15 * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Cylc
+        run: pip install cylc-flow
+
+      # Runs a set of commands using the runners shell
+      - name: Update Snippets
+        run: ./bin/get_keywords
