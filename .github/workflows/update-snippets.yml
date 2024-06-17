@@ -4,7 +4,8 @@ name: Update Snippets
 on:
   # Ideally people making changes should re-run this task, but probably
   # won't remember - I think once a month is probably often enough.
-  schedule: "* * 15 * *"
+  schedule:
+    - cron: "* * 15 * *"
   workflow_dispatch:
 
 jobs:
