@@ -40,6 +40,10 @@ jobs:
     needs: [snippets]
     if: needs.snippets.outputs.create_pr == 'true'
     steps:
+    - name: foo
+      run: |
+        tree vscode-cylc || tree
+
     - name: Configure git
       uses: cylc/release-actions/configure-git@v1
 
