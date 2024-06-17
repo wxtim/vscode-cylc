@@ -40,6 +40,15 @@ jobs:
     needs: [snippets]
     if: needs.snippets.outputs.create_pr == 'true'
     steps:
+
+    - uses: actions/checkout@v4
+
+    - name: Install Cylc
+      run: pip install cylc-flow
+
+    - name: Update Snippets
+      run: ./bin/get_keywords > cylc-snippets.json
+
     - name: foo
       run: |
         tree vscode-cylc || tree
