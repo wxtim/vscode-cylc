@@ -49,10 +49,6 @@ jobs:
     - name: Update Snippets
       run: ./bin/get_keywords > cylc-snippets.json
 
-    - name: foo
-      run: |
-        tree vscode-cylc || tree
-
     - name: Configure git
       uses: cylc/release-actions/configure-git@v1
 
