@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  rebuild-snippets:
+  snippets:
     runs-on: ubuntu-latest
     outputs:
       create_pr: ${{ steps.set_output.outputs.create_pr }}
@@ -28,6 +28,8 @@ jobs:
       - name: git diff and set output
         id: set_output
         run: |
+          git status
+
           if [[ -n $(git status cylc-snippets.json) ]]; then
             echo "create_pr=true" >> $GITHUB_OUTPUT
           else
@@ -36,8 +38,8 @@ jobs:
 
   commit:
     runs-on: ubuntu-latest
-    needs: [rebuild-snippets]
-    if: needs.rebuild-snippets.outputs.create_pr == 'true'
+    needs: [snippets]
+    if: needs.snippets.outputs.create_pr == 'true'
     steps:
       - name:
         run: echo "Hello World"
