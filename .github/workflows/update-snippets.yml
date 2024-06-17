@@ -9,15 +9,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  rebuild-snippets:
     runs-on: ubuntu-latest
-
+    outputs:
+      create_pr: ${{ steps.set_output.outputs.create_pr }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Cylc
         run: pip install cylc-flow
 
-      # Runs a set of commands using the runners shell
       - name: Update Snippets
-        run: ./bin/get_keywords
+        run: ./bin/get_keywords > cylc-snippets.json
+
+      - name: Configure git
+        uses: cylc/release-actions/configure-git@v1
+
+      - name: git diff and set output
+        id: set_output
+        run: |
+          if [[ -n $(git status cylc-snippets.json) ]]; then
+            echo "::set-output name=create_pr::true"
+          else
+            echo "::set-output name=create_pr::false"
+          fi
+
+  commit:
+    runs-on: ubuntu-latest
+    needs: [rebuild-snippets]
+    if: needs.rebuild-snippets.outputs.create_pr == 'true'
+    steps:
+      - name:
+        run: echo "Hello World"
