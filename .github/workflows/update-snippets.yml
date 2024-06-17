@@ -29,9 +29,9 @@ jobs:
         id: set_output
         run: |
           if [[ -n $(git status cylc-snippets.json) ]]; then
-            echo "::set-output name=create_pr::true"
+            echo "create_pr=true" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=create_pr::false"
+            echo "create_pr=false" >> $GITHUB_OUTPUT
           fi
 
   commit:
