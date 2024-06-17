@@ -165,7 +165,7 @@
             "startup handlers"
         ],
         "body": "startup handlers = ${1:*value unset*}",
-        "description": "Handlers to run at scheduler startup.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]startup handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``startup handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   startup handlers = echo foo\n\n   # provide context to the handler\n   startup handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   startup handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run at scheduler startup.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]startup handlers`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``startup handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   startup handlers = echo foo\n\n   # provide context to the handler\n   startup handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   startup handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "shutdown handlers": {
         "prefix": [
@@ -173,7 +173,7 @@
             "shutdown handlers"
         ],
         "body": "shutdown handlers = ${1:*value unset*}",
-        "description": "Handlers to run at scheduler shutdown.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]shutdown handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``shutdown handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   shutdown handlers = echo foo\n\n   # provide context to the handler\n   shutdown handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   shutdown handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run at scheduler shutdown.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]shutdown handlers`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``shutdown handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   shutdown handlers = echo foo\n\n   # provide context to the handler\n   shutdown handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   shutdown handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "abort handlers": {
         "prefix": [
@@ -181,7 +181,7 @@
             "abort handlers"
         ],
         "body": "abort handlers = ${1:*value unset*}",
-        "description": "Handlers to run if the scheduler shuts down with error status due to\na configured timeout or a fatal error condition.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``aborted handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   abort handlers = echo foo\n\n   # provide context to the handler\n   abort handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   abort handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run if the scheduler shuts down with error status due to\na configured timeout or a fatal error condition.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort handlers`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``aborted handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   abort handlers = echo foo\n\n   # provide context to the handler\n   abort handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   abort handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "workflow timeout": {
         "prefix": [
@@ -189,7 +189,7 @@
             "workflow timeout"
         ],
         "body": "workflow timeout = ${1:*value unset*}",
-        "description": "Workflow timeout interval. The timer starts counting down at scheduler\nstartup. It resets on workflow restart.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]workflow timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionadded:: 8.0.0"
+        "description": "Workflow timeout interval. The timer starts counting down at scheduler\nstartup. It resets on workflow restart.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]workflow timeout`.\n\n.. versionadded:: 8.0.0"
     },
     "workflow timeout handlers": {
         "prefix": [
@@ -197,7 +197,7 @@
             "workflow timeout handlers"
         ],
         "body": "workflow timeout handlers = ${1:*value unset*}",
-        "description": "Handlers to run if the workflow timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]workflow timeout handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionadded:: 8.0.0\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   workflow timeout handlers = echo foo\n\n   # provide context to the handler\n   workflow timeout handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   workflow timeout handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run if the workflow timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]workflow timeout handlers`.\n\n.. versionadded:: 8.0.0\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   workflow timeout handlers = echo foo\n\n   # provide context to the handler\n   workflow timeout handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   workflow timeout handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "abort on workflow timeout": {
         "prefix": [
@@ -205,7 +205,7 @@
             "abort on workflow timeout"
         ],
         "body": "abort on workflow timeout = ${1:*value unset*}",
-        "description": "Whether the scheduler should shut down immediately with error status if\nthe workflow timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort on workflow timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionadded:: 8.0.0"
+        "description": "Whether the scheduler should shut down immediately with error status if\nthe workflow timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort on workflow timeout`.\n\n.. versionadded:: 8.0.0"
     },
     "stall handlers": {
         "prefix": [
@@ -213,7 +213,7 @@
             "stall handlers"
         ],
         "body": "stall handlers = ${1:*value unset*}",
-        "description": "Handlers to run if the scheduler stalls.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]stall handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``stalled handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   stall handlers = echo foo\n\n   # provide context to the handler\n   stall handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   stall handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run if the scheduler stalls.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]stall handlers`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``stalled handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   stall handlers = echo foo\n\n   # provide context to the handler\n   stall handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   stall handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "stall timeout": {
         "prefix": [
@@ -221,7 +221,7 @@
             "stall timeout"
         ],
         "body": "stall timeout = ${1:*value unset*}",
-        "description": "The length of a timer which starts if the scheduler stalls.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]stall timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``timeout``."
+        "description": "The length of a timer which starts if the scheduler stalls.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]stall timeout`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``timeout``."
     },
     "stall timeout handlers": {
         "prefix": [
@@ -229,7 +229,7 @@
             "stall timeout handlers"
         ],
         "body": "stall timeout handlers = ${1:*value unset*}",
-        "description": "Handlers to run if the stall timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]stall timeout handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``timeout handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   stall timeout handlers = echo foo\n\n   # provide context to the handler\n   stall timeout handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   stall timeout handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run if the stall timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]stall timeout handlers`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``timeout handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   stall timeout handlers = echo foo\n\n   # provide context to the handler\n   stall timeout handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   stall timeout handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "abort on stall timeout": {
         "prefix": [
@@ -237,7 +237,7 @@
             "abort on stall timeout"
         ],
         "body": "abort on stall timeout = ${1:*value unset*}",
-        "description": "Whether the scheduler should shut down immediately with error status if\nthe stall timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort on stall timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``abort on timeout``."
+        "description": "Whether the scheduler should shut down immediately with error status if\nthe stall timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort on stall timeout`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``abort on timeout``."
     },
     "inactivity timeout": {
         "prefix": [
@@ -245,7 +245,7 @@
             "inactivity timeout"
         ],
         "body": "inactivity timeout = ${1:*value unset*}",
-        "description": "Scheduler inactivity timeout interval. The timer resets when any\nworkflow activity occurs.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]inactivity timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called  ``inactivity``."
+        "description": "Scheduler inactivity timeout interval. The timer resets when any\nworkflow activity occurs.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]inactivity timeout`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called  ``inactivity``."
     },
     "inactivity timeout handlers": {
         "prefix": [
@@ -253,7 +253,7 @@
             "inactivity timeout handlers"
         ],
         "body": "inactivity timeout handlers = ${1:*value unset*}",
-        "description": "Handlers to run if the inactivity timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]inactivity timeout handlers`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``inactivity handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   inactivity timeout handlers = echo foo\n\n   # provide context to the handler\n   inactivity timeout handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   # (which will run in parallel)\n   inactivity timeout handlers = \\\n       'echo %(workflow)s %(event)s', \\\n       'my_exe %(event)s %(message)s', \\\n       'curl -X PUT -d event=%(event)s host:port'"
+        "description": "Handlers to run if the inactivity timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]inactivity timeout handlers`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``inactivity handler``.\n\n\n\nExamples:\n\n.. code-block:: cylc\n\n   # configure a single event handler\n   inactivity timeout handlers = echo foo\n\n   # provide context to the handler\n   inactivity timeout handlers = echo %(workflow)s\n\n   # configure multiple event handlers\n   inactivity timeout handlers = \\\n       'echo %(workflow)s, %(event)s', \\\n       'my_exe %(event)s %(message)s' \\\n       'curl -X PUT -d event=%(event)s host:port'"
     },
     "abort on inactivity timeout": {
         "prefix": [
@@ -261,7 +261,7 @@
             "abort on inactivity timeout"
         ],
         "body": "abort on inactivity timeout = ${1:*value unset*}",
-        "description": "Whether the scheduler should shut down immediately with error status if\nthe inactivity timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort on inactivity timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``abort on inactivity``."
+        "description": "Whether the scheduler should shut down immediately with error status if\nthe inactivity timer times out.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]abort on inactivity timeout`.\n\n.. versionchanged:: 8.0.0\n\n   This item was previously called ``abort on inactivity``."
     },
     "restart timeout": {
         "prefix": [
@@ -269,7 +269,7 @@
             "restart timeout"
         ],
         "body": "restart timeout = ${1:*value unset*}",
-        "description": "How long to wait for intervention on restarting a completed workflow.\nThe timer stops if any task is triggered.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]restart timeout`.\n\n.. seealso::\n\n   :ref:`user_guide.scheduler.workflow_events`\n\n.. versionadded:: 8.2.0"
+        "description": "How long to wait for intervention on restarting a completed workflow.\nThe timer stops if any task is triggered.\n\nThe default value is set in the global config: :cylc:conf:`global.cylc[scheduler][events]restart timeout`.\n\n.. versionadded:: 8.2.0"
     },
     "expected task failures": {
         "prefix": [
@@ -365,7 +365,7 @@
             "final cycle point"
         ],
         "body": "final cycle point = ${1:*value unset*}",
-        "description": "The (optional) last cycle point at which tasks are run.\n\nOnce all tasks have reached this cycle point, the\nworkflow will shut down.\n\nThis item can be overridden on the command line using\n``cylc play --final-cycle-point`` or ``--fcp``.\n\nExamples:\n\n- ``2000`` - Shorthand for ``2000-01-01T00:00``.\n- ``+P1D`` - The initial cycle point plus one day.\n- ``2000 +P1D +P1Y`` - The year ``2000`` plus one day and one year."
+        "description": "The (optional) last cycle point at which tasks are run.\n\nOnce all tasks have reached this cycle point, the\nworkflow will shut down.\n\nThis item can be overridden on the command line using\n``cylc play --final-cycle-point`` or ``--fcp``."
     },
     "initial cycle point constraints": {
         "prefix": [
@@ -397,7 +397,7 @@
             "stop after cycle point"
         ],
         "body": "stop after cycle point = ${1:*value unset*}",
-        "description": "Shut down the workflow after all tasks pass this cycle point.\n\nThe stop cycle point can be overridden on the command line using\n``cylc play --stop-cycle-point=POINT``\n\n.. note::\n\n   Not to be confused with :cylc:conf:`[..]final cycle point`:\n   There can be more graph beyond this point, but you are\n   choosing not to run that part of the graph. You can play\n   the workflow and continue.\n\nExamples:\n\n- ``2000`` - Shorthand for ``2000-01-01T00:00``.\n- ``+P1D`` - The initial cycle point plus one day.\n- ``2000 +P1D +P1Y`` - The year ``2000`` plus one day and one year.\n\n.. versionadded:: 8.0.0\n\n.. versionchanged:: 8.3.0\n\n   This now supports offsets (e.g. ``+P1D``) in the same way the\n   :cylc:conf:`[..]final cycle point` does."
+        "description": "Shut down the workflow after all tasks pass this cycle point.\n\nThe stop cycle point can be overridden on the command line using\n``cylc play --stop-cycle-point=POINT``\n\n.. note::\n\n   Not to be confused with :cylc:conf:`[..]final cycle point`:\n   There can be more graph beyond this point, but you are\n   choosing not to run that part of the graph. You can play\n   the workflow and continue.\n\n.. versionadded:: 8.0.0"
     },
     "cycling mode": {
         "prefix": [
@@ -413,7 +413,7 @@
             "runahead limit"
         ],
         "body": "runahead limit = ${1:P4}",
-        "description": "The runahead limit prevents a workflow from getting too far ahead\nof the oldest cycle with :term:`active tasks <active task>`.\n\nA cycle is considered to be active if it contains any\n:term:`active` tasks.\n\nAn integer interval value of ``Pn`` allows up to ``n+1`` cycles\nto be active at once.\n\nThe default runahead limit is ``P4``, which means there may be up\nto 5 active cycles.\n\nDatetime cycling workflows can optionally use a datetime interval\nvalue instead, in which case the number of cycles\nwithin the interval depends on the cycling intervals present.\n\nExamples:\n\n``P0``\n    Only one cycle can be active at a time.\n``P2``\n    The scheduler will run up to two cycles ahead of the oldest\n    active cycle.\n``P3D``\n    The scheduler will run cycles up to three days of cycles ahead\n    of the oldest active cycle.\n\n.. seealso::\n\n   :ref:`RunaheadLimit`\n\n.. versionchanged:: 8.0.0\n\n   The integer format ``Pn`` was introduced to replace the\n   deprecated ``[scheduling]max active cycle points = m``\n   (with ``n = m-1``) and unify it with the existing datetime\n   interval ``runahead limit`` setting."
+        "description": "The scheduler runahead limit determines how many consecutive cycle\npoints can be active at once. The base point of the runahead\ncalculation is the lowest-valued point with :term:`active` or\n:term:`incomplete` tasks present.\n\nAn integer interval value of ``Pn`` allows up to ``n+1`` cycle\npoints (including the base point) to be active at once.\n\nThe default runahead limit is ``P4``, i.e. 5 active points\nincluding the base point.\n\nDatetime cycling workflows can optionally use a datetime interval\nvalue instead, in which case the number of active cycle points\nwithin the interval depends on the cycling intervals present.\n\n.. seealso::\n\n   :ref:`RunaheadLimit`\n\n.. versionchanged:: 8.0.0\n\n   The integer format ``Pn`` was introduced to replace the\n   deprecated ``[scheduling]max active cycle points = m``\n   (with ``n = m-1``) and unify it with the existing datetime\n   interval ``runahead limit`` setting."
     },
     "[queues]": {
         "prefix": [
@@ -421,7 +421,7 @@
             "queues"
         ],
         "body": "[[queues]]",
-        "description": "Configuration of internal queues of tasks.\n\nThis section will allow you to limit the number of simultaneously\n:term:`active tasks <active task>` (submitted or running) by\nassigning tasks to queues.\n\nBy default, a single queue called ``default`` is defined,\nwith all tasks assigned to it and no limit to the number of those\ntasks which may be active.\n\nTo use a single queue for the whole workflow, but limit the number\nof active tasks, set :cylc:conf:`[default]limit`.\n\nTo add additional queues define additional sections:\n\n.. code-block:: cylc\n\n   [[queues]]\n       [[[user_defined_queue]]]\n           limit = 2\n           members = TASK_FAMILY_NAME\n\n.. seealso::\n\n   :ref:`InternalQueues`."
+        "description": "Configuration of internal queues of tasks.\n\nThis section will allow you to limit the number of simultaneously\nactive tasks (submitted or running) by assigning tasks to queues.\n\nBy default, a single queue called ``default`` is defined,\nwith all tasks assigned to it and no limit to the number of those\ntasks which may be active.\n\nTo use a single queue for the whole workflow, but limit the number\nof active tasks, set :cylc:conf:`[default]limit`.\n\nTo add additional queues define additional sections:\n\n.. code-block:: cylc\n\n   [[queues]]\n       [[[user_defined_queue]]]\n           limit = 2\n           members = TASK_FAMILY_NAME\n\n.. seealso::\n\n   :ref:`InternalQueues`."
     },
     "[<queue name>]": {
         "prefix": [
@@ -437,7 +437,7 @@
             "limit"
         ],
         "body": "limit = ${1:100}",
-        "description": "Controls the total number of\n:term:`active tasks <active task>` in the default queue.\n\n.. seealso::\n\n   - :cylc:conf:`flow.cylc[scheduling]\n     [queues][<queue name>]limit`\n   - :ref:`InternalQueues`"
+        "description": "Controls the total number of active tasks in the default\nqueue.\n\n.. seealso::\n\n   - :cylc:conf:`flow.cylc[scheduling]\n     [queues][<queue name>]limit`\n   - :ref:`InternalQueues`"
     },
     "members": {
         "prefix": [
@@ -495,14 +495,6 @@
         "body": "sequential = ${1:*value unset*}",
         "description": "A list of tasks which automatically depend on their own\nprevious-cycle instance.\n\n.. tip::\n\n   Recommend best practice is now to use explicit inter-cycle\n   triggers rather than sequential tasks.\n\n.. seealso::\n\n    :ref:`SequentialTasks`."
     },
-    "sequential xtriggers": {
-        "prefix": [
-            "sequential xtriggers = ${1:False}",
-            "sequential xtriggers"
-        ],
-        "body": "sequential xtriggers = ${1:False}",
-        "description": "If ``True``, tasks that only depend on xtriggers will not spawn\nuntil the xtrigger of previous (cycle point) instance is satisfied.\nOtherwise, they will all spawn at once out to the runahead limit.\n\nThis setting can be overridden by the reserved keyword argument\n``sequential`` in individual xtrigger declarations.\n\nOne sequential xtrigger on a parentless task with multiple\nxtriggers will cause sequential spawning.\n\n.. versionadded:: 8.3.0"
-    },
     "[xtriggers]": {
         "prefix": [
             "[[xtriggers]]",
@@ -550,14 +542,6 @@
         ],
         "body": "[[<namespace>]]",
         "description": "The name(s) of one or more tasks or task families.\n\nA namespace (i.e. task or family name) or a comma-separated list\nof namespace names, and repeat as needed to define all tasks in\nthe workflow. Names may contain letters, digits, underscores, and\nhyphens.  A namespace represents a group or family of tasks if\nother namespaces inherit from it, or a task if no others inherit\nfrom it.\n\n.. important::\n\n   Names may not contain ``:`` or ``.``.\n\n   See :ref:`task namespace rules. <namespace-names>`\n\nExamples of legal values:\n\n- ``[foo]``\n- ``[foo, bar, baz]``\n\nIf multiple names are listed the subsequent settings apply to\nall.\n\nAll tasks or task families inherit initially from ``root``, which\ncan be explicitly configured to provide or override default\nsettings for all tasks in the workflow."
-    },
-    "completion": {
-        "prefix": [
-            "completion = ${1:*value unset*}",
-            "completion"
-        ],
-        "body": "completion = ${1:*value unset*}",
-        "description": "Define the condition for task output completion.\n\nThe completion condition is evaluated when a task reaches\na final state - i.e. once it finished executing (``succeeded``\nor ``failed``) or it ``submit-failed``, or ``expired``.\nIt is a validation check which confirms that the\ntask has generated the outputs it was expected to.\n\nIf the task fails this check its outputs are considered\n:term:`incomplete` and a warning will be raised alerting you\nthat something has gone wrong which requires investigation.\n\n.. note::\n\n   An event hook for this warning will follow in a future\n   release of Cylc.\n\nBy default, the completion condition ensures that all required\noutputs, i.e. outputs which appear in the graph but are not\nmarked as optional with the ``?`` character, are completed.\n\nE.g., in this example, the task ``foo`` must generate the\nrequired outputs ``succeeded`` and ``x`` and it may or may not\ngenerate the optional output ``y``:\n\n.. code-block:: cylc-graph\n\n   foo => bar\n   foo:x => x\n   foo:y? => y\n\nThe default completion condition would be this:\n\n.. code-block:: python\n\n   # the task must succeed and generate the custom output \"x\"\n   succeeded and x\n\nYou can override this default to suit your needs. E.g., in this\nexample, the task ``foo`` has three optional outputs, ``x``,\n``y`` and ``z``:\n\n.. code-block:: cylc-graph\n\n   foo:x? => x\n   foo:y? => y\n   foo:z? => z\n   x | y | z => bar\n\nBecause all three of these outputs are optional, if none of\nthem are generated, the task's outputs will still be\nconsidered complete.\n\nIf you wanted to require that at least one of these outputs is\ngenerated you can configure the completion condition like so:\n\n.. code-block:: python\n\n   # the task must succeed and generate at least one of the\n   # outputs \"x\" or \"y\" or \"z\":\n   succeeded and (x or y or z)\n\n.. note::\n\n   For the completion expression, hyphens in task outputs\n   must be replaced with underscores to allow evaluation by\n   Python, e.g.:\n\n   .. code-block:: cylc\n\n      [runtime]\n          [[foo]]\n              completion = succeeded and my_output # underscore\n              [[[outputs]]]\n                  my-output = 'my custom task output' # hyphen\n\n.. note::\n\n   In some cases the ``succeeded`` output might not explicitly\n   appear in the graph, e.g:\n\n   .. code-block:: cylc-graph\n\n      foo:x? => x\n\n   In these cases success is presumed to be required unless\n   explicitly stated otherwise, either in the graph e.g:\n\n   .. code-block:: cylc-graph\n\n      foo?\n      foo:x? => x\n\n   Or in the completion expression e.g:\n\n   .. code-block:: cylc\n\n      completion = x  # no reference to succeeded\n      # or\n      completion = succeeded or failed  # success is optional\n\n\n.. hint::\n\n   If task outputs are optional in the graph they must also\n   be optional in the completion condition and vice versa.\n\n   For example this graph conflicts with the completion\n   statement:\n\n   .. code-block:: cylc-graph\n\n      # \"a\" must succeed\n      a => b\n\n   .. code-block:: cylc\n\n      # \"a\" may either succeed or fail\n      completion = succeeded or failed\n\n   Which could be fixed by amending the graph like so:\n\n   .. code-block:: cylc-graph\n\n      # \"a\" may either succeed or fail\n      a? => b\n\n.. rubric:: Examples\n\n``succeeded``\n   The task must succeed.\n``succeeded or (failed and my_error)``\n   The task can fail, but only if it also yields the custom\n   output ``my_error``.\n``succeeded and (x or y or z)``\n   The task must succeed and yield at least one of the\n   custom outputs, x, y or z.\n``(a and b) or (c and d)``\n   One pair of these outputs must be yielded for the task\n   to be complete.\n\n.. versionadded:: 8.3.0"
     },
     "platform": {
         "prefix": [
@@ -717,7 +701,7 @@
             "fail cycle points"
         ],
         "body": "fail cycle points = ${1:*value unset*}",
-        "description": "Configure simulated or dummy jobs to fail at certain cycle\npoints.\n\nExample:\n\n- ``all`` - all instance of the task will fail\n- ``2017-08-12T06, 2017-08-12T18`` - these instances of\n  the task will fail\n\nIf you set :cylc:conf:`[..][..]execution retry delays`\nthe second attempt will succeed unless you set\n:cylc:conf:`[..]fail try 1 only = False`."
+        "description": "Configure simulated or dummy jobs to fail at certain cycle\npoints.\n\nExample:\n\n- ``all`` - all instance of the task will fail\n- ``2017-08-12T06, 2017-08-12T18`` - these instances of\n  the task will fail"
     },
     "fail try 1 only": {
         "prefix": [
@@ -725,7 +709,7 @@
             "fail try 1 only"
         ],
         "body": "fail try 1 only = ${1:True}",
-        "description": "If ``True`` only the first run of the task\ninstance will fail, otherwise retries will fail too.\n\nTask instances must be set to fail by\n:cylc:conf:`[..]fail cycle points`.\n\n.. note::\n\n   This setting is designed for use with automatic\n   retries. Subsequent manual submissions will not\n   change the outcome of the task."
+        "description": "If ``True`` only the first run of the task\ninstance will fail, otherwise retries will fail too."
     },
     "disable task event handlers": {
         "prefix": [
