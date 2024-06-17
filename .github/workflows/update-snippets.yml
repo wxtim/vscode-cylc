@@ -30,6 +30,8 @@ jobs:
         run: |
           git status
 
+          git diff
+
           if [[ -n $(git status cylc-snippets.json) ]]; then
             echo "create_pr=true" >> $GITHUB_OUTPUT
           else
