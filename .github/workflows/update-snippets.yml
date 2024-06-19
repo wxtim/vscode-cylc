@@ -5,7 +5,7 @@ on:
   # Ideally people making changes should re-run this task, but probably
   # won't remember - I think once a month is probably often enough.
   schedule:
-    - cron: "* * 15 * *"
+    - cron: "51 03 15 * *" # 03:51 on the 15th of the month
   workflow_dispatch:
 
 jobs:
