@@ -37,13 +37,13 @@ jobs:
     - name: Checkout PR branch
       if: steps.set_output.outputs.create_pr == 'true'
       run: |
-        git branch -D "update_snippets"
         git checkout -b "update_snippets"
 
     - name: Commit & push
       if: steps.set_output.outputs.create_pr == 'true'
       run : |
         git commit -a -m "Update Cylc Config Snippets" -m "Workflow: ${{ github.workflow }}, run: ${{ github.run_number }}"
+        git branch -D "origin/update_snippets"
         git push
 
     - name: Create pull request
